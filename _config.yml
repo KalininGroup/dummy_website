@@ -1,29 +1,32 @@
-title: Event Title
-nav_title: Event Title
+title: DEMOCritus
+nav_title: DEMOCritus
+tagline: DEterministic MOlecular & Atomic Construction for Quantum Devices
 
-event_date: December 16-18
+
+event_date: TBA
 registration_opens_date: TBA
 registration_closes_date: TBA
 
 author:
 mailbox_address:
 
-description: |
-  Hackathon
+# description: |
+#   Conference workshop on Atomic Fabrication
 
-url: "https://kaliningroup.github.io/dummy_website/"
-github_repo: kaliningroup
+# url: "https://kaliningroup.github.io/Atomic-Fabrication-Workshop-2026/"
+# github_repo: kaliningroup
 
 theme: minima
 
 # The actual visibility of the nav bar links is influenced by the event_status
 # and registration_status flags below
 header_pages:
+  - main.md
+  - about.md
   - registration.md
   - agenda.md
-  - submission.md
-  - videos-slides.md
-  - about.md
+  - venue.md
+
 
 # Event status
 #   soon = event is yet to happen
@@ -67,3 +70,9 @@ defaults:
 # Simplify tables of contents
 kramdown:
   toc_levels: "2,3"
+
+
+# Hide the GitHub footer links
+gh_edit_link: false       # removes "Improve this page" / "Edit this page"
+gh_source_link: false     # if your theme version supports it, hides "View page source"
+last_edit_timestamp: false
