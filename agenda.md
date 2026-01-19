@@ -9,28 +9,69 @@ menu_icon: clock
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    table-layout: fixed;
   }
-  .agenda-grid td, .agenda-grid th {
+
+  .agenda-grid td,
+  .agenda-grid th {
     border: 1px solid #999;
     padding: 6px 8px;
     vertical-align: middle;
+    box-sizing: border-box;
   }
 
+  /* Allow long titles to wrap correctly */
+  .agenda-grid td {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+
+  /* Keep time columns on one line */
+  .agenda-grid td:nth-child(1),
+  .agenda-grid td:nth-child(2) {
+    white-space: nowrap;
+  }
+
+  /* Header and row colors */
   .dayhdr { background:#eee; font-weight:bold; }
-  .purple { background:#9b00ff; color:#fff; font-weight:bold; text-align:center; }
+
+  .purple { background:#9b00ff; font-weight:bold; text-align:center; color:#000; }
   .cyan { background:#00f0f0; font-weight:bold; }
   .lightblue { background:#d6e4ff; }
   .yellow { background:#f6e9b6; }
   .softgray { background:#f5f5f5; }
 
+  /* Force color onto TDs (important for table-layout:fixed) */
+  .agenda-grid tr.cyan td { background:#00f0f0; }
+  .agenda-grid tr.yellow td { background:#f6e9b6; }
+  .agenda-grid tr.lightblue td { background:#d6e4ff; }
+  .agenda-grid tr.purple td { background:#9b00ff; color:#000; }
+  .agenda-grid tr.softgray td { background:#f5f5f5; }
+
   .center { text-align:center; }
 
-  .green { color: green; font-weight: 700; }
-  .blue  { color: blue;  font-weight: 700; }
-  .red   { color: red;   font-weight: 700; }
+  .green, .blue, .red {
+    color:#000;
+    font-weight:700;
+  }
 </style>
 
 <table class="agenda-grid">
+
+<colgroup>
+  <col style="width:10%">
+  <col style="width:10%">
+  <col style="width:15%">
+  <col style="width:15%">
+  <col style="width:15%">
+  <col style="width:15%">
+  <col style="width:10%">
+  <col style="width:10%">
+</colgroup>
+
+
 
   <!-- ===================== DAY 1 ===================== -->
   <tr class="dayhdr">
@@ -55,61 +96,57 @@ menu_icon: clock
   </tr>
 
   <tr class="yellow">
-    <td>9:00 AM</td><td>10:00 AM</td>
+    <td rowspan="3">9:00 AM</td>
+    <td rowspan="3">10:00 AM</td>
     <td colspan="4"><strong>Session 1: Opening and Vision</strong></td>
     <td class="center green" colspan="2">Chair: Adina Lucan-Maier</td>
   </tr>
 
   <tr>
-    <td></td><td></td>
     <td colspan="2">Speaker 1: 9:00 AM – 9:30 AM</td>
-    <td colspan="4" class="blue">David Awschalom: Emerging opportunities with quantum-engineered semiconductors and molecules</td>
+    <td colspan="4">David Awschalom: Emerging opportunities with quantum-engineered semiconductors and molecules</td>
   </tr>
 
   <tr>
-    <td></td><td></td>
     <td colspan="2">Speaker 2: 9:30 AM – 10:00 AM</td>
-    <td colspan="4" class="blue">Susanne Stemmer: Topological materials for quantum information systems</td>
+    <td colspan="4">Susanne Stemmer: Topological materials for quantum information systems</td>
   </tr>
 
-  <tr class="cyan">
+  <tr class="softgray">
     <td>10:00 AM</td><td>10:30 AM</td>
     <td colspan="6">Coffee Break</td>
   </tr>
 
+
   <tr class="yellow">
-    <td>10:30 AM</td><td>12:00 PM</td>
+    <td rowspan="4">10:30 AM</td><td rowspan="4">12:00 PM</td>
     <td colspan="4"><strong>Session 2: Quantum from Semiconductor and Molecular Perspectives</strong></td>
     <td class="center green" colspan="2">Chair: Shashank Misra</td>
   </tr>
 
   <tr>
-    <td></td><td></td>
     <td colspan="2">Speaker 3: 10:30 AM – 11:00 AM</td>
-    <td colspan="4" class="blue">Michael R Wasielewski: Exploiting Molecules and Molecular Materials for Quantum Information Science</td>
+    <td colspan="4">Michael R Wasielewski: Exploiting Molecules and Molecular Materials for Quantum Information Science</td>
   </tr>
 
   <tr>
-    <td></td><td></td>
     <td colspan="2">Speaker 4: 11:00 AM – 11:30 AM</td>
-    <td colspan="4" class="blue">John Randall: Atomic Scale Fabrication - a Top-Down Digital Approach</td>
+    <td colspan="4">John Randall: Atomic Scale Fabrication - a Top-Down Digital Approach</td>
   </tr>
 
   <tr>
-    <td></td><td></td>
     <td colspan="2">Speaker 5: 11:30 AM – 12:00 PM</td>
-    <td colspan="4" class="blue">Oleg Gang: Programming 3D Assembly of Optical and Electronic Nanomaterials</td>
+    <td colspan="4">Oleg Gang: Programming 3D Assembly of Optical and Electronic Nanomaterials</td>
   </tr>
 
-  <tr>
-    <td>12:00 PM</td><td>1:00 PM</td>
-    <td colspan="6"><strong>Lunch</strong> — Paul Weiss</td>
+  <tr class="lightblue">
+      <td>12:00 PM</td><td>1:00 PM</td>
+      <td colspan="6"><strong>Lunch: </strong>Yves Idzerda: Transitioning 2D Technologies at the MonArk Quantum Foundry</td>
   </tr>
 
   <!-- Breakout Sessions (Day 1) -->
-  <tr>
-    <td></td>
-    <td colspan="7" class="purple">Breakout Sessions</td>
+  <tr class="purple">
+    <td colspan="8"><strong>Breakout Sessions</strong></td>
   </tr>
 
   <tr class="center softgray">
@@ -136,15 +173,15 @@ menu_icon: clock
     <td></td>
   </tr>
 
-  <tr class="cyan">
+  <tr class="softgray">
     <td>2:30 PM</td><td>3:00 PM</td>
     <td colspan="6">Coffee Break</td>
   </tr>
 
-  <tr>
+  <tr class="yellow">
     <td>3:00 PM</td><td>4:00 PM</td>
     <td colspan="4"><strong>Session 3: Industry and National Labs</strong></td>
-    <td class="center green" rowspan="4" colspan="2">Chair: Jeremy Levy</td>
+    <td class="center green" colspan="2">Chair: Jeremy Levy</td>
   </tr>
 
   <tr>
@@ -172,40 +209,39 @@ menu_icon: clock
     <td colspan="2"></td>
   </tr>
 
-  <tr class="lightblue">
+  <tr class="yellow">
     <td>4:10 PM</td><td>5:30 PM</td>
     <td colspan="4"><strong>Session 4: Integration between molecules and semiconductors</strong></td>
-    <td class="center green" rowspan="4" colspan="2">Chair: Vincent Meunier</td>
-  </tr>
-
-  <tr class="lightblue">
-    <td></td><td></td>
-    <td colspan="2">Speaker 1: 4:10 PM – 4:30 PM</td>
-    <td colspan="2" class="green">Ulrich Wiesner: The Promise of Soft Matter enabled Quantum Devices</td>
-  </tr>
-
-  <tr class="lightblue">
-    <td></td><td></td>
-    <td colspan="2">Speaker 2: 4:30 PM – 4:50 PM</td>
-    <td colspan="2" class="blue">Dmitri Basov?</td>
-  </tr>
-
-  <tr class="lightblue">
-    <td></td><td></td>
-    <td colspan="2">Speaker 3: 4:50 PM – 5:10 PM</td>
-    <td colspan="2" class="blue">Marija Drndic?</td>
-  </tr>
-
-  <tr class="lightblue">
-    <td></td><td></td>
-    <td colspan="2">Speaker 4: 5:10 PM – 5:30 PM</td>
-    <td colspan="2" class="green">Peter Maurer?</td>
-    <td colspan="2"></td>
+    <td class="center green" colspan="2">Chair: Vincent Meunier</td>
   </tr>
 
   <tr>
+    <td></td><td></td>
+    <td colspan="2">Speaker 1: 4:10 PM – 4:30 PM</td>
+    <td colspan="4" class="green">Ulrich Wiesner: The Promise of Soft Matter enabled Quantum Devices</td>
+  </tr>
+
+  <tr>
+    <td></td><td></td>
+    <td colspan="2">Speaker 2: 4:30 PM – 4:50 PM</td>
+    <td colspan="4" class="blue">Dmitri Basov?</td>
+  </tr>
+
+  <tr>
+    <td></td><td></td>
+    <td colspan="2">Speaker 3: 4:50 PM – 5:10 PM</td>
+    <td colspan="4" class="blue">Marija Drndic?</td>
+  </tr>
+
+  <tr>
+    <td></td><td></td>
+    <td colspan="2">Speaker 4: 5:10 PM – 5:30 PM</td>
+    <td colspan="4" class="green">Peter Maurer?</td>
+  </tr>
+
+  <tr class = "lightblue">
     <td>6:00 PM</td><td>8:00 PM</td>
-    <td colspan="6"><strong>Dinner/Dinner Keynote</strong> — Rahul Sarpeshkar: Analog and Probabilistic Computers: From Quantum Atom To Living Body</td>
+    <td colspan="6"><strong>Dinner/Dinner Keynote: </strong>Rahul Sarpeshkar: Analog and Probabilistic Computers: From Quantum Atom To Living Body</td>
   </tr>
 
   <!-- spacer -->
@@ -257,7 +293,7 @@ menu_icon: clock
     <td colspan="4" class="blue">Xiuling Li: Quantum Sensing with Spin Defects in III-Nitrides</td>
   </tr>
 
-  <tr class="cyan">
+  <tr class="softgray">
     <td>10:00 AM</td><td>10:20 AM</td>
     <td colspan="6">Coffee Break</td>
   </tr>
@@ -333,7 +369,7 @@ menu_icon: clock
     <td></td>
   </tr>
 
-  <tr class="cyan">
+  <tr class="softgray">
     <td>2:30 PM</td><td>3:00 PM</td>
     <td colspan="6">Coffee Break</td>
   </tr>
